@@ -1,6 +1,6 @@
 package com.example.family.controller;
 
-import com.example.family.entity.User;
+import com.example.family.entity.Sysuser;
 import com.example.family.service.IUserSearch;
 import com.example.family.utils.JsonWrite;
 import org.springframework.stereotype.Controller;
@@ -25,7 +25,7 @@ public class LoginController {
 
     @RequestMapping("/login/main")
     @ResponseBody
-    public JsonWrite getLoginPage(User user) {
+    public JsonWrite getLoginPage(Sysuser user) {
         return userSearch.selectUserByUsername(user);
     }
 

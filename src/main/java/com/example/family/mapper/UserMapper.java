@@ -1,6 +1,10 @@
 package com.example.family.mapper;
-import com.example.family.entity.User;
+import com.example.family.dto.PageHelper;
+import com.example.family.entity.Sysuser;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
+import java.util.Map;
 
 /*
 @description
@@ -12,16 +16,20 @@ public interface UserMapper {
 //
 //    int deleteByPrimaryKey(Integer id);
 //
-//    int insert(User record);
+//    int insert(Sysuser record);
 //
-//    int insertSelective(User record);
+//    int insertSelective(Sysuser record);
 
-    User selectByPrimaryKey(Integer id);
+    Sysuser selectByPrimaryKey(Integer id);
 
-//    int updateByPrimaryKeySelective(User record);
+//    int updateByPrimaryKeySelective(Sysuser record);
 //
-//    int updateByPrimaryKey(User record);
+//    int updateByPrimaryKey(Sysuser record);
 
     //通过用户名查找
-    User selectByUsername(User record);
+    Sysuser selectByUsername(Sysuser record);
+
+    List getAllList(PageHelper pageHelper);
+
+    int getCount();
 }

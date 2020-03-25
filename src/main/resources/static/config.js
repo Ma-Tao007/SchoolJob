@@ -109,3 +109,15 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
     }
   });
 });
+// var ContextPath;
+// window.onload=function(){
+//     ContextPath = getPath();
+// }
+//
+// function getPath(){
+//     var pathName = document.location.pathname;
+//     var index = pathName.substr(1).indexOf("/");
+//     return pathName.substr(0,index+1);
+//
+// }
+

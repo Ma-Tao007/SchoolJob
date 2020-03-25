@@ -1,6 +1,8 @@
 package com.example.family.service;
 
-import com.example.family.entity.User;
+import com.example.family.dto.LayuiPageResult;
+import com.example.family.dto.PageHelper;
+import com.example.family.entity.Sysuser;
 import com.example.family.utils.JsonWrite;
 
 /*
@@ -10,5 +12,7 @@ import com.example.family.utils.JsonWrite;
 */
 public interface IUserSearch {
     //根据用户名去查询用户信息
-    JsonWrite selectUserByUsername(User user);
+    JsonWrite selectUserByUsername(Sysuser user);
+
+    LayuiPageResult getAllList(PageHelper pageHelper);
 }

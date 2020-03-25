@@ -1,10 +1,11 @@
 package com.example.family.service.impl;
 
-import com.example.family.entity.User;
+import com.example.family.dto.LayuiPageResult;
+import com.example.family.dto.PageHelper;
+import com.example.family.entity.Sysuser;
 import com.example.family.mapper.UserMapper;
 import com.example.family.service.IUserSearch;
 import com.example.family.utils.JsonWrite;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,9 +20,9 @@ public class UserSearchImpl implements IUserSearch {
     @Resource
     private UserMapper userMapper;
     @Override
-    public JsonWrite selectUserByUsername(User user) {
+    public JsonWrite selectUserByUsername(Sysuser user) {
         //由于不需要操作数据库，所以在这里执行查询操作
-        User selUser = userMapper.selectByUsername(user);
+        Sysuser selUser = userMapper.selectByUsername(user);
         //验证信息
         if(null == selUser){
             return JsonWrite.CUSTOMIZE("401",false,"用户名不存在");
@@ -30,5 +31,14 @@ public class UserSearchImpl implements IUserSearch {
         }else{
             return JsonWrite.CUSTOMIZE("200",true,"登陆成功");
         }
+    }
+
+    @Override
+    public LayuiPageResult getAllList(PageHelper pageHelper) {
+        LayuiPageResult lpr = new LayuiPageResult();
+        lpr.setData(userMapper.getAllList(pageHelper));
+        lpr.setMsg("获取列表成功");
+        lpr.setCount(userMapper.getCount());
+        return lpr;
     }
 }

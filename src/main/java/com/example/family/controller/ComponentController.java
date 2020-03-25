@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("component")
 public class ComponentController {
+    @RequestMapping("table/height")
+    public String getTableHeight(){
+        return "component/table/height";
+    }
 
     @RequestMapping("grid/list")
     public String getGridList(){
@@ -156,10 +160,6 @@ public class ComponentController {
         return "component/table/totalRows";
     }
 
-    @RequestMapping("table/height")
-    public String getTableHeight(){
-        return "component/table/height";
-    }
 
     @RequestMapping("table/checkbox")
     public String getTableCheckBox(){
