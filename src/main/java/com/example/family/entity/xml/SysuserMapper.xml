@@ -11,6 +11,12 @@
         <result column="email" jdbcType="VARCHAR" property="email"/>
         <result column="isdel" jdbcType="VARCHAR" property="isdel"/>
         <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="qualiy" jdbcType="VARCHAR" property="qualiy"/>
+        <result column="skill" jdbcType="VARCHAR" property="skill"/>
+        <result column="major" jdbcType="VARCHAR" property="major"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="persname" jdbcType="VARCHAR" property="persname"/>
+        <result column="birthday" jdbcType="TIMESTAMP" property="birthday"/>
     </resultMap>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select * from sysuser where id = #{id,jdbcType=INTEGER}

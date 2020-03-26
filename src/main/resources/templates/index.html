@@ -66,11 +66,11 @@
           <!--</li>-->
           <li class="layui-nav-item" lay-unselect style="margin-right:20px">
             <a href="javascript:;">
-              <cite>贤心</cite>
+              <cite id="username">贤心</cite>
             </a>
             <dl class="layui-nav-child">
               <!--<dd><a lay-href="set/user/info.html">基本资料</a></dd>-->
-              <!--<dd><a lay-href="set/user/password.html">修改密码</a></dd>-->
+              <a lay-href="set/user/password.html">修改密码</a>
               <!--<hr>-->
               <dd layadmin-event="logout" style="text-align: center;"><a>退出</a></dd>
             </dl>
@@ -477,8 +477,9 @@
       <div class="layadmin-body-shade" layadmin-event="shade"></div>
     </div>
   </div>
-
+  <input type="hidden" th:src="@{/}" id="contextpath">
   <script th:src="@{/layui/layui.js}"></script>
+  <script th:src="@{/lib/jquery-1.8.2.min.js}"></script>
   <script>
   layui.config({
     base: '/' //静态资源所在路径
@@ -486,6 +487,18 @@
     index: 'lib/index' //主入口模块
   }).use('index');
   </script>
+<script>
+  console.log($("#contextpath").val())
+    $.ajax({
+        url:$("#contextpath").val()+"/getLoginMsg",
+        type:'GET',
+        success:function(data){
+            if(data.success){
+                $("#username").text(data.msg)
+            }
+        }
+    })
+</script>
 </body>
 </html>
 

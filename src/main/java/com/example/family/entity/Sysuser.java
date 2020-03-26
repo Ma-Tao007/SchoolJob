@@ -1,9 +1,17 @@
 package com.example.family.entity;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /*
 @description
 @anther  Administrator
 @creater 2020-03-10 10:48
 */
+@Data
 public class Sysuser {
     private Integer id;
     private String username;
@@ -14,6 +22,63 @@ public class Sysuser {
     private String email;
     private Integer isdel;
     private Integer status;
+    private String skill;
+    private String major;
+    private String qualiy;
+    private String persname;
+    @JsonFormat(pattern = "yyyy-MM-dd",locale = "zh",timezone = "GMT+8")
+    private String birthday;
+    private String remark;
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getPersname() {
+        return persname;
+    }
+
+    public void setPersname(String persname) {
+        this.persname = persname;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public String getQualiy() {
+        return qualiy;
+    }
+
+    public void setQualiy(String qualiy) {
+        this.qualiy = qualiy;
+    }
+
+    public String getSkill() {
+        return skill;
+    }
+
+    public void setSkill(String skill) {
+        this.skill = skill;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+
 
     public String getUsername() {
         return username;
@@ -39,14 +104,6 @@ public class Sysuser {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Sysuser{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
 
     public Integer getKind() {
         return kind;

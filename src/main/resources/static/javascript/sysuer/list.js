@@ -9,7 +9,6 @@ layui.config({
         ,table = layui.table
         ,form = layui.form
         ,$ = layui.$;
-
     table.render({
         elem: '#test-table-height'
         ,url: contextpath + '/sysuser/getList'
@@ -19,10 +18,15 @@ layui.config({
         ,page: true
         ,limit: 20
         ,cols: [[
-            {type:'checkbox'}
-            ,{type:'numbers'}
+            {type:'numbers'}
             ,{field:'username', title: '用户名', width:100}
+            ,{field:'persname', title: 'persname', width:100}
             ,{field:'sex', title: '性别', width:100,templet:'#test-table-switchTpl', unresize: true}
+            ,{field:'major', title: '所学专业', minWidth: 150}
+            ,{field:'qualiy', title: '学历', minWidth: 150}
+            ,{field:'skill', title: '技能', hidden:true}
+            ,{field:'birthday', title: '出身日期'}
+            ,{field:'remark', title: '自我介绍', hidden:true}
             ,{field:'phone', title: '电话', minWidth: 150}
             ,{field:'email', title: '邮箱', sort: true, align: 'right'}
             ,{
@@ -54,24 +58,24 @@ layui.config({
         json = table.clearCacheKey(json);
         console.log(json); //当前行数据
     });
-
-    //头工具栏事件
-    table.on('toolbar(test-table-toolbar)', function(obj){
-        var checkStatus = table.checkStatus(obj.config.id);
-        switch(obj.event){
-            case 'getCheckData':
-                var data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
-                break;
-            case 'getCheckLength':
-                var data = checkStatus.data;
-                layer.msg('选中了：'+ data.length + ' 个');
-                break;
-            case 'isAll':
-                layer.msg(checkStatus.isAll ? '全选': '未全选');
-                break;
-        };
-    });
+    //
+    // //头工具栏事件
+    // table.on('toolbar(test-table-toolbar)', function(obj){
+    //     var checkStatus = table.checkStatus(obj.config.id);
+    //     switch(obj.event){
+    //         case 'getCheckData':
+    //             var data = checkStatus.data;
+    //             layer.alert(JSON.stringify(data));
+    //             break;
+    //         case 'getCheckLength':
+    //             var data = checkStatus.data;
+    //             layer.msg('选中了：'+ data.length + ' 个');
+    //             break;
+    //         case 'isAll':
+    //             layer.msg(checkStatus.isAll ? '全选': '未全选');
+    //             break;
+    //     };
+    // });
 
     //监听行工具事件
     table.on('tool(test-table-toolbar)', function(obj){
@@ -82,15 +86,11 @@ layui.config({
                 layer.close(index);
             });
         } else if(obj.event === 'edit'){
-            layer.prompt({
-                formType: 2
-                ,value: data.email
-            }, function(value, index){
-                obj.update({
-                    email: value
-                });
-                layer.close(index);
-            });
+            if(top.layui.index){
+                top.layui.index.openTabsPage("sysuser/show?id="+data.id,"用户查看")
+            }else{
+                window.open(url)
+            }
         }
     });
 

@@ -30,16 +30,16 @@
                 <div class="layui-card-header">高度最大适应</div>
                 <div class="layui-card-body">
                     <table class="layui-hide" id="test-table-height" lay-filter="test-table-toolbar"></table>
-                    <script type="text/html" id="test-table-toolbar-toolbarDemo">
-                        <div class="layui-btn-container">
-                            <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-                            <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-                            <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
-                        </div>
-                    </script>
+                    <!--<script type="text/html" id="test-table-toolbar-toolbarDemo">-->
+                        <!--<div class="layui-btn-container">-->
+                            <!--<button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>-->
+                            <!--<button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>-->
+                            <!--<button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>-->
+                        <!--</div>-->
+                    <!--</script>-->
                     <script type="text/html" id="test-table-switchTpl">
                         <!-- 这里的 checked 的状态只是演示 -->
-                        <input type="checkbox" name="sex" lay-skin="switch" lay-text="女|男" lay-filter="test-table-sexDemo"
+                        <input disabled type="checkbox" name="sex" lay-skin="switch" lay-text="女|男" lay-filter="test-table-sexDemo"
                                value="{{ d.sex }}" data-json="{{ encodeURIComponent(JSON.stringify(d)) }}" {{ d.sex == '女' ? 'checked' : '' }}>
                     </script>
 
@@ -49,7 +49,7 @@
                                value="{{d.status}}" data-json="{{ encodeURIComponent(JSON.stringify(d)) }}" {{ d.status == 0 ? 'checked' : '' }}>
                     </script>
                     <script type="text/html" id="test-table-toolbar-barDemo">
-                        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                        <a class="layui-btn layui-btn-xs" lay-event="edit" >查看</a>
                         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
                     </script>
                 </div>
@@ -57,6 +57,7 @@
         </div>
     </div>
 </div>
+<!--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
 <input type="hidden" th:src="@{/}" id="contextpath">
 <script th:src="@{/layui/layui.js}"></script>
 <script th:src="@{/lib/jquery-1.8.2.min.js}"></script>

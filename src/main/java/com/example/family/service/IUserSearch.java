@@ -5,6 +5,8 @@ import com.example.family.dto.PageHelper;
 import com.example.family.entity.Sysuser;
 import com.example.family.utils.JsonWrite;
 
+import javax.servlet.http.HttpSession;
+
 /*
 @description
 @anther  Administrator
@@ -12,7 +14,9 @@ import com.example.family.utils.JsonWrite;
 */
 public interface IUserSearch {
     //根据用户名去查询用户信息
-    JsonWrite selectUserByUsername(Sysuser user);
+    JsonWrite selectUserByUsername(Sysuser user, HttpSession sessioninfo);
 
     LayuiPageResult getAllList(PageHelper pageHelper);
+
+    Sysuser selectUserById(Integer id);
 }

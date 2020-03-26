@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 /*
 @description
@@ -25,12 +26,22 @@ public class LoginController {
 
     @RequestMapping("/login/main")
     @ResponseBody
-    public JsonWrite getLoginPage(Sysuser user) {
-        return userSearch.selectUserByUsername(user);
+    public JsonWrite getLoginPage(Sysuser user, HttpSession sessioninfo) {
+        return userSearch.selectUserByUsername(user,sessioninfo);
     }
 
     @RequestMapping("index")
     public String getIndexPage(){
         return "index";
+    }
+
+    @RequestMapping("getLoginMsg")
+    @ResponseBody
+    public JsonWrite getLoginMsg(HttpSession session){
+        Sysuser sessioninfo = (Sysuser) session.getAttribute("sessioninfo");
+        if(null!=sessioninfo){
+            return JsonWrite.CUSTOMIZE("202",true,sessioninfo.getUsername());
+        }
+        return null;
     }
 }

@@ -9,6 +9,7 @@ import com.example.family.utils.JsonWrite;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 /*
 @description
@@ -20,7 +21,7 @@ public class UserSearchImpl implements IUserSearch {
     @Resource
     private UserMapper userMapper;
     @Override
-    public JsonWrite selectUserByUsername(Sysuser user) {
+    public JsonWrite selectUserByUsername(Sysuser user, HttpSession sessioninfo) {
         //由于不需要操作数据库，所以在这里执行查询操作
         Sysuser selUser = userMapper.selectByUsername(user);
         //验证信息
@@ -29,6 +30,8 @@ public class UserSearchImpl implements IUserSearch {
         }else if(!selUser.getPassword().equals(user.getPassword())){
             return JsonWrite.CUSTOMIZE("401",false,"密码错误");
         }else{
+            //登录成功将信息保存到session中
+            sessioninfo.setAttribute("sessioninfo",selUser);
             return JsonWrite.CUSTOMIZE("200",true,"登陆成功");
         }
     }
@@ -40,5 +43,10 @@ public class UserSearchImpl implements IUserSearch {
         lpr.setMsg("获取列表成功");
         lpr.setCount(userMapper.getCount());
         return lpr;
+    }
+
+    @Override
+    public Sysuser selectUserById(Integer id) {
+        return userMapper.selectByPrimaryKey(id);
     }
 }
