@@ -53,37 +53,44 @@ layui.config({
 //监听锁定操作
     form.on('checkbox(test-table-lockDemo)', function(obj){
         var json = JSON.parse(decodeURIComponent($(this).data('json')));
-        layer.tips(this.value + ' ' + this.name + '：'+ obj.elem.checked, obj.othis);
-
         json = table.clearCacheKey(json);
-        console.log(json); //当前行数据
+        var msg = ''
+        if(json.status==0){
+            json.status = 1
+            msg = "启用成功"
+        }else{
+            json.status = 0
+            msg = "禁用成功"
+        }
+        $.ajax({
+            url:contextpath+"/sysuser/update",
+            type:"post",
+            data:{"id":json.id,"status":json.status},
+            success:function(data){
+                layer.msg(msg, {icon: 1});
+                $(".layui-laypage-btn")[0].click();
+            }
+        })
+
     });
-    //
-    // //头工具栏事件
-    // table.on('toolbar(test-table-toolbar)', function(obj){
-    //     var checkStatus = table.checkStatus(obj.config.id);
-    //     switch(obj.event){
-    //         case 'getCheckData':
-    //             var data = checkStatus.data;
-    //             layer.alert(JSON.stringify(data));
-    //             break;
-    //         case 'getCheckLength':
-    //             var data = checkStatus.data;
-    //             layer.msg('选中了：'+ data.length + ' 个');
-    //             break;
-    //         case 'isAll':
-    //             layer.msg(checkStatus.isAll ? '全选': '未全选');
-    //             break;
-    //     };
-    // });
+
 
     //监听行工具事件
     table.on('tool(test-table-toolbar)', function(obj){
         var data = obj.data;
         if(obj.event === 'del'){
             layer.confirm('真的删除行么', function(index){
-                obj.del();
-                layer.close(index);
+
+                $.ajax({
+                    url:contextpath+"/sysuser/delete",
+                    type:"post",
+                    data:data,
+                    success:function(data){
+                        layer.msg('删除成功', {icon: 1});
+                        $(".layui-laypage-btn")[0].click();
+                    }
+                })
+
             });
         } else if(obj.event === 'edit'){
             if(top.layui.index){

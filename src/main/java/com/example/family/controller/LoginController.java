@@ -2,7 +2,7 @@ package com.example.family.controller;
 
 
 import com.example.family.entity.Sysuser;
-import com.example.family.service.IUserSearch;
+import com.example.family.service.SysuserService;
 import com.example.family.utils.JsonWrite;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class LoginController {
     @Resource
-    private IUserSearch userSearch;
+    private SysuserService userSearch;
     @RequestMapping("/")
     public String index() {
         return "login/login";

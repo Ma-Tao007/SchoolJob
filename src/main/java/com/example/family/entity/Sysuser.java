@@ -2,13 +2,15 @@ package com.example.family.entity;
 
 import java.util.Date;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public class Sysuser {
     private Integer id;
 
@@ -40,6 +42,8 @@ public class Sysuser {
     /**
      * 出生日期
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
     private Date birthday;
 
     /**
