@@ -27,16 +27,24 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-header">用户列表</div>
+                <div class="layui-card-header">企业列表</div>
                 <div class="layui-card-body">
+                    <div class="test-table-reload-btn" style="margin-bottom: 10px;">
+                        公司名称：
+                        <div class="layui-inline">
+                            <input class="layui-input" id="companyname"  autocomplete="off">
+                        </div>
+                        职位：
+                        <div class="layui-inline">
+                            <input class="layui-input" id="post" autocomplete="off">
+                        </div>
+                        学历：
+                        <div class="layui-inline">
+                            <input class="layui-input" id="qualiy" autocomplete="off">
+                        </div>
+                        <button class="layui-btn" data-type="reload">搜索</button>
+                    </div>
                     <table class="layui-hide" id="test-table-height" lay-filter="test-table-toolbar"></table>
-                    <!--<script type="text/html" id="test-table-toolbar-toolbarDemo">-->
-                        <!--<div class="layui-btn-container">-->
-                            <!--<button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>-->
-                            <!--<button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>-->
-                            <!--<button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>-->
-                        <!--</div>-->
-                    <!--</script>-->
                     <script type="text/html" id="test-table-switchTpl">
                         <!-- 这里的 checked 的状态只是演示 -->
                         <input disabled type="checkbox" name="sex" lay-skin="switch" lay-text="女|男" lay-filter="test-table-sexDemo"
@@ -49,9 +57,11 @@
                                value="{{d.status}}" data-json="{{ encodeURIComponent(JSON.stringify(d)) }}" {{ d.status == 1 ? 'checked' : '' }}>
                     </script>
                     <script type="text/html" id="test-table-toolbar-barDemo">
-                        <a class="layui-btn layui-btn-xs" lay-event="edit" >查看</a>
-                        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                        <a class="layui-btn layui-btn-xs" lay-event="show" >投递简历</a>
                     </script>
+                    <!--<a class="layui-btn layui-btn-xs" lay-event="show" >查看</a>
+                        <a class="layui-btn layui-btn-xs" lay-event="edit" >编辑</a>
+                        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
                 </div>
             </div>
         </div>
@@ -61,7 +71,13 @@
 <input type="hidden" th:src="@{/}" id="contextpath">
 <script th:src="@{/layui/layui.js}"></script>
 <script th:src="@{/lib/jquery-1.8.2.min.js}"></script>
-<script th:src="@{/javascript/sysuer/list.js}"></script>
+<script th:src="@{/javascript/student/company.js}"></script>
 <script th:src="@{/config.js}"></script>
 </body>
+<style>
+    .layui-table-cell{
+        height:36px;
+        line-height: 36px;
+    }
+</style>
 </html>

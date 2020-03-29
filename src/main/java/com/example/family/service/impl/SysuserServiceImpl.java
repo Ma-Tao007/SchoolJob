@@ -72,6 +72,16 @@ public class SysuserServiceImpl implements SysuserService {
         return JsonWrite.CUSTOMIZE("200",true,"验证成功");
     }
 
+    @Override
+    public JsonWrite rigst(Sysuser user) {
+        Sysuser sysuser = sysuserMapper.selectByUsername(user);
+        if(null==sysuser){
+            return JsonWrite.SUCCESS(sysuserMapper.insert(user));
+        }else{
+            return JsonWrite.ERROR("用户名已存在");
+        }
+    }
+
 }
 
 

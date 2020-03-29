@@ -1,4 +1,6 @@
 
+
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
@@ -15,77 +17,78 @@
 
 <div class="layui-fluid">
     <div class="layui-card">
-        <div class="layui-card-header">用户查看</div>
+        <div class="layui-card-header">企业查看</div>
         <div class="layui-card-body" style="padding: 15px;">
-            <form class="layui-form" th:action="@{/}" lay-filter="component-form-group" th:object="${sysuser}">
+            <form class="layui-form" th:action="@{/}" lay-filter="component-form-group" th:object="${company}">
                 <div class="layui-form-item">
-                    <label class="layui-form-label">用户名</label>
+                    <label class="layui-form-label">企业编码</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" readonly th:field="*{username}" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                        <input type="text" name="title" readonly th:field="*{companyno}" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">姓名</label>
+                    <label class="layui-form-label">企业名称</label>
                     <div class="layui-input-block">
-                        <input type="text" name="username" readonly lay-verify="required" th:field="*{persname}" placeholder="请输入" autocomplete="off" class="layui-input">
+                        <input type="text" name="username" readonly lay-verify="required" th:field="*{companyname}" placeholder="请输入" autocomplete="off" class="layui-input">
                     </div>
                 </div>
 
                 <div class="layui-form-item">
                     <div class="layui-inline">
-                        <label class="layui-form-label">手机号</label>
+                        <label class="layui-form-label">招聘职位</label>
                         <div class="layui-input-inline">
-                            <input type="tel" name="phone" readonly th:field="*{phone}" lay-verify="required|phone" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-inline">
-                        <label class="layui-form-label">邮箱</label>
-                        <div class="layui-input-inline">
-                            <input type="text" name="email" readonly th:field="*{email}" lay-verify="required|email" autocomplete="off" class="layui-input">
+                            <input type="tel" name="phone" readonly th:field="*{post}" lay-verify="required|phone" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-inline">
-                        <label class="layui-form-label">所学专业</label>
+                        <label class="layui-form-label">招聘负责人</label>
                         <div class="layui-input-inline">
-                            <input type="tel" name="phone" readonly th:field="*{major}"  autocomplete="off" class="layui-input">
+                            <input type="tel" name="phone" readonly th:field="*{people}" lay-verify="required|phone" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <label class="layui-form-label">学历</label>
+                        <label class="layui-form-label">联系方式</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="phone" readonly th:field="*{peoplephone}" lay-verify="required|phone" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">所需学历</label>
                         <div class="layui-input-inline">
                             <input type="text" name="email" readonly th:field="*{qualiy}" autocomplete="off" class="layui-input">
                         </div>
                     </div>
-                </div>
-
-                <div class="layui-form-item">
                     <div class="layui-inline">
-                        <label class="layui-form-label">出生日期</label>
+                        <label class="layui-form-label">薪资待遇</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="date" readonly th:field="*{birthday}" id="LAY-component-form-group-date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                            <input type="text" name="email" readonly th:field="*{money}" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                 </div>
 
                 <div class="layui-form-item">
-                    <label class="layui-form-label">性别</label>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">发布时间</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="date" readonly th:field="*{date}" id="LAY-component-form-group-date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">面试方式</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="sex" readonly th:field="*{sex}" value="男" title="男"  checked="${sex=='男'}">
-                        <input type="radio" name="sex" readonly th:field="*{sex}" value="女" title="女" checked="${sex=='女'}">
+                        <input type="text" name="date" readonly th:field="*{type}" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input"></textarea>
                     </div>
                 </div>
                 <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">技能</label>
+                    <label class="layui-form-label">企业详细地址</label>
                     <div class="layui-input-block">
-                        <textarea name="text" th:field="*{skill}" readonly  placeholder="请输入内容" class="layui-textarea"></textarea>
-                    </div>
-                </div>
-                <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">自我介绍</label>
-                    <div class="layui-input-block">
-                        <textarea name="text" th:field="*{remark}" readonly placeholder="请输入内容" class="layui-textarea"></textarea>
+                        <textarea name="text" th:field="*{location}" readonly placeholder="请输入内容" class="layui-textarea"></textarea>
                     </div>
                 </div>
             </form>

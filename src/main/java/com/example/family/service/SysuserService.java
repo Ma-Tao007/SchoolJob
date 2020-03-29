@@ -27,6 +27,7 @@ public interface SysuserService {
 
     JsonWrite selectUserByUsername(Sysuser user, HttpSession session);
 
+    JsonWrite rigst(Sysuser user);
 }
 
 

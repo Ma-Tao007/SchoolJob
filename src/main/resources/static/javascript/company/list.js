@@ -11,7 +11,7 @@ layui.config({
         ,$ = layui.$;
     table.render({
         elem: '#test-table-height'
-        ,url: contextpath + '/sysuser/getList'
+        ,url: contextpath + '/company/getList'
         ,toolbar: '#test-table-toolbar-toolbarDemo'
         ,height: 'full-100'
         ,cellMinWidth: 80
@@ -19,25 +19,17 @@ layui.config({
         ,limit: 20
         ,cols: [[
             {type:'numbers'}
-            ,{field:'username', title: '用户名', width:100}
-            ,{field:'persname', title: '姓名', width:100}
-            ,{field:'sex', title: '性别', width:100,templet:'#test-table-switchTpl', unresize: true}
-            ,{field:'major', title: '所学专业', minWidth: 150}
-            ,{field:'qualiy', title: '学历', minWidth: 150}
-            ,{field:'skill', title: '技能', hide:true}
-            ,{field:'birthday', title: '出生日期'}
-            ,{field:'remark', title: '自我介绍', hide:true}
-            ,{field:'phone', title: '电话', minWidth: 150}
-            ,{field:'email', title: '邮箱', sort: true, align: 'right'}
-            ,{
-            field:'kind', title: '角色', sort: true,
-                templet:function(row){
-                return formatKind(row.kind)
-                    },
-                minWidth: 100, align: 'right'
-                }
-            ,{field:'status',title: '状态', sort: true, minWidth: 100,templet: '#test-table-checkboxTpl', align: 'right',unresize: true}
-            ,{fixed: 'right', title:'操作', toolbar: '#test-table-toolbar-barDemo', width:150}
+            ,{field:'companyno', title: '企业编码', width:100}
+            ,{field:'companyname', title: '企业名称', width:100}
+            ,{field:'post', title: '招聘职位', width:100, unresize: true}
+            ,{field:'location', title: '企业地址', minWidth: 150}
+            ,{field:'people', title: '负责人', minWidth: 150}
+            ,{field:'peoplephone', title: '负责人手机'}
+            ,{field:'date', title: '发布时间'}
+            ,{field:'type', title: '面试方式', minWidth: 150}
+            ,{field:'qualiy', title: '学历要求', sort: true }
+            ,{field:'money', title: '薪资待遇', sort: true}
+            ,{fixed: 'right', title:'操作', toolbar: '#test-table-toolbar-barDemo', width:170}
         ]]
     });
 
@@ -74,15 +66,20 @@ layui.config({
 
     });
 
+    $('.layui-btn-container .layui-btn').on('click', function(){
+        top.layui.index.openTabsPage("company/addPage","企业新增")
+    });
+
 
     //监听行工具事件
     table.on('tool(test-table-toolbar)', function(obj){
         var data = obj.data;
         if(obj.event === 'del'){
+            data.isdel = 1
             layer.confirm('真的删除行么', function(index){
 
                 $.ajax({
-                    url:contextpath+"/sysuser/delete",
+                    url:contextpath+"/company/updata",
                     type:"post",
                     data:data,
                     success:function(data){
@@ -92,9 +89,15 @@ layui.config({
                 })
 
             });
-        } else if(obj.event === 'edit'){
+        } else if(obj.event === 'show'){
             if(top.layui.index){
-                top.layui.index.openTabsPage("sysuser/show?id="+data.id,"用户查看")
+                top.layui.index.openTabsPage("company/show?id="+data.id+"&type=0","企业查看")
+            }else{
+                window.open(url)
+            }
+        }else if(obj.event === 'edit'){
+            if(top.layui.index){
+                top.layui.index.openTabsPage("company/show?id="+data.id+"&type=1","企业编辑")
             }else{
                 window.open(url)
             }
@@ -104,7 +107,7 @@ layui.config({
 });
 
 function formatKind(kind){
-    return kind==1?'管理员':'学生'
+    return kind==0?'管理员':'学生'
 }
 function formatStatus(status){
     return status==0?"禁用":'启用'

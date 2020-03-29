@@ -27,16 +27,14 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-header">用户列表</div>
+                <div class="layui-card-header">企业列表</div>
                 <div class="layui-card-body">
                     <table class="layui-hide" id="test-table-height" lay-filter="test-table-toolbar"></table>
-                    <!--<script type="text/html" id="test-table-toolbar-toolbarDemo">-->
-                        <!--<div class="layui-btn-container">-->
-                            <!--<button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>-->
-                            <!--<button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>-->
-                            <!--<button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>-->
-                        <!--</div>-->
-                    <!--</script>-->
+                    <script type="text/html" id="test-table-toolbar-toolbarDemo">
+                    <div class="layui-btn-container">
+                    <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
+                    </div>
+                    </script>
                     <script type="text/html" id="test-table-switchTpl">
                         <!-- 这里的 checked 的状态只是演示 -->
                         <input disabled type="checkbox" name="sex" lay-skin="switch" lay-text="女|男" lay-filter="test-table-sexDemo"
@@ -49,7 +47,8 @@
                                value="{{d.status}}" data-json="{{ encodeURIComponent(JSON.stringify(d)) }}" {{ d.status == 1 ? 'checked' : '' }}>
                     </script>
                     <script type="text/html" id="test-table-toolbar-barDemo">
-                        <a class="layui-btn layui-btn-xs" lay-event="edit" >查看</a>
+                        <a class="layui-btn layui-btn-xs" lay-event="show" >查看</a>
+                        <a class="layui-btn layui-btn-xs" lay-event="edit" >编辑</a>
                         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
                     </script>
                 </div>
@@ -61,7 +60,7 @@
 <input type="hidden" th:src="@{/}" id="contextpath">
 <script th:src="@{/layui/layui.js}"></script>
 <script th:src="@{/lib/jquery-1.8.2.min.js}"></script>
-<script th:src="@{/javascript/sysuer/list.js}"></script>
+<script th:src="@{/javascript/company/list.js}"></script>
 <script th:src="@{/config.js}"></script>
 </body>
 </html>

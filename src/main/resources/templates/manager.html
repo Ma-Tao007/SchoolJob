@@ -70,9 +70,9 @@
             </a>
             <dl class="layui-nav-child">
               <!--<dd><a lay-href="set/user/info.html">基本资料</a></dd>-->
-              <a lay-href="set/user/password.html">修改密码</a>
+              <a onclick="updataPassword()">修改密码</a>
               <!--<hr>-->
-              <dd layadmin-event="logout" style="text-align: center;"><a>退出</a></dd>
+              <dd  style="text-align: center;"><a onclick="loginOut()" target="_self">退出</a></dd>
             </dl>
           </li>
           
@@ -271,7 +271,7 @@
                       <!--<a lay-href="component/table/cellRow" lay-text="">监听行事件</a>-->
                     <!--</dd>-->
                     <!--<dd data-name="reload"> -->
-                      <!--<a lay-href="component/table/reload" lay-text="">数据表格的重载</a>-->
+                      <!--<a lay-href="component/table/reload" lay-text="">重载</a>-->
                     <!--</dd>-->
                     <!--<dd data-name="initSort"> -->
                       <!--<a lay-href="component/table/initSort" lay-text="">设置初始排序</a>-->
@@ -442,6 +442,11 @@
         </div>
       </div>
 
+
+
+
+
+
       <!-- 页面标签 -->
       <div class="layadmin-pagetabs" id="LAY_app_tabs">
         <div class="layui-icon layadmin-tabs-control layui-icon-prev" layadmin-event="leftPage"></div>
@@ -486,6 +491,7 @@
   }).extend({
     index: 'lib/index' //主入口模块
   }).use('index');
+
   </script>
 <script>
   console.log($("#contextpath").val())
@@ -498,6 +504,20 @@
             }
         }
     })
+
+  function updataPassword(){
+      top.layui.index.openTabsPage("updataPasswordPage","修改密码")
+  }
+  function loginOut(){
+      layer.confirm('确定退出吗？', {
+          btn: ['确定','取消'] //按钮
+      }, function(){
+          window.location = "/"
+      }, function(){
+
+      });
+  }
+
 </script>
 </body>
 </html>
