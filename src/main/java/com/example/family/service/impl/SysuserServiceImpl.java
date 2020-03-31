@@ -66,6 +66,9 @@ public class SysuserServiceImpl implements SysuserService {
         if(!user.getPassword().equals(sysuser.getPassword())){
             return JsonWrite.CUSTOMIZE("403",false,"密码错误");
         }
+        if(sysuser.getStatus()==0){
+            return JsonWrite.ERROR("账号被禁用，无法登录");
+        }
         //验证成功保存到session中
         session.setAttribute("sessioninfo",sysuser);
 
