@@ -214,11 +214,14 @@
   </select>
 
   <select id="getAllList" resultMap="BaseResultMap">
-    select * from sysuser where isdel=0
+    select * from sysuser where isdel=0 and kind!=1
+    <if test="start!=null">
+      limit ${start},${page*limit}
+    </if>
   </select>
 
   <select id="getCount" resultType="java.lang.Integer">
-    select count(*) from sysuser where isdel=0
+    select count(*) from sysuser where isdel=0 and kind!=1
   </select>
 
   <update id="updateStatus">

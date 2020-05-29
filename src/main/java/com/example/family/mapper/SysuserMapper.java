@@ -1,5 +1,6 @@
 package com.example.family.mapper;
 
+import com.example.family.dto.PageHelper;
 import com.example.family.entity.Sysuser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -24,7 +25,7 @@ public interface SysuserMapper {
 
     int getCount();
 
-    List<Sysuser> getAllList();
+    List<Sysuser> getAllList(PageHelper pageHelper);
 
     void updateStatus(@Param("id") Integer id, @Param("status") Integer status);
 }

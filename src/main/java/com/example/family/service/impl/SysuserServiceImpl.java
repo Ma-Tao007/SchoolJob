@@ -53,7 +53,7 @@ public class SysuserServiceImpl implements SysuserService {
     public LayuiPageResult getAllList(PageHelper pageHelper) {
         LayuiPageResult layuiPageResult = new LayuiPageResult();
         layuiPageResult.setCount(sysuserMapper.getCount());
-        layuiPageResult.setData(sysuserMapper.getAllList());
+        layuiPageResult.setData(sysuserMapper.getAllList(pageHelper));
         return layuiPageResult;
     }
 

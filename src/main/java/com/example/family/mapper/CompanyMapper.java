@@ -1,7 +1,9 @@
 package com.example.family.mapper;
 
+import com.example.family.dto.PageHelper;
 import com.example.family.entity.Company;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,7 +23,7 @@ public interface CompanyMapper {
 
     int getCount(Company company);
 
-    List<Company> getAllList(Company company);
+    List<Company> getAllList(@Param("company") Company company, @Param("pageHelper") PageHelper pageHelper);
 
     Company isExitNo(Company company);
 }

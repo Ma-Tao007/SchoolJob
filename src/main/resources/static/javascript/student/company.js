@@ -19,17 +19,17 @@ layui.config({
         ,limit: 20
         ,cols: [[
             {type:'numbers'}
-            ,{field:'companyno', title: '企业编码', width:100}
+            // ,{field:'companyno', title: '企业编码', width:100}
             ,{field:'companyname', title: '企业名称', width:100}
             ,{field:'post', title: '招聘职位', width:100}
-            ,{field:'location', title: '企业地址', minWidth: 150}
-            ,{field:'people', title: '负责人'}
-            ,{field:'peoplephone', title: '负责人手机'}
+            // ,{field:'location', title: '企业地址', minWidth: 150}
+            // ,{field:'people', title: '负责人'}
+            // ,{field:'peoplephone', title: '负责人手机'}
             ,{field:'date', title: '发布时间'}
             ,{field:'type', title: '面试方式'}
             ,{field:'qualiy', title: '学历要求', sort: true }
             ,{field:'money', title: '薪资待遇', sort: true}
-            ,{fixed: 'right', title:'操作', toolbar: '#test-table-toolbar-barDemo', width:100}
+            ,{fixed: 'right', title:'操作', toolbar: '#test-table-toolbar-barDemo', width:150}
         ]]
     });
 
@@ -102,7 +102,7 @@ layui.config({
 
         }else if(obj.event === 'edit'){
             if(top.layui.index){
-                top.layui.index.openTabsPage("company/show?id="+data.id+"&type=1","企业编辑")
+                top.layui.index.openTabsPage("company/show?id="+data.id+"&type=0","企业查看")
             }else{
                 window.open(url)
             }

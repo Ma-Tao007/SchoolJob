@@ -48,7 +48,7 @@ public class CompanyServiceImpl implements CompanyService {
     public LayuiPageResult getAllList(PageHelper pageHelper,Company company) {
         LayuiPageResult layuiPageResult = new LayuiPageResult();
         layuiPageResult.setCount(companyMapper.getCount(company));
-        layuiPageResult.setData(companyMapper.getAllList(company));
+        layuiPageResult.setData(companyMapper.getAllList(company,pageHelper));
         return layuiPageResult;
     }
 

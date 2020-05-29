@@ -178,14 +178,17 @@
 
   <select id="getAllList" resultMap="BaseResultMap">
     select * from company where isdel=0
-    <if test="companyname !='' and companyname!=null" >
-      and companyname like "%"#{companyname,jdbcType=VARCHAR}"%"
+    <if test="company.companyname !='' and company.companyname!=null" >
+      and companyname like "%"#{company.companyname,jdbcType=VARCHAR}"%"
     </if>
-    <if test="post != '' and post!=null">
-      and post like "%"#{post,jdbcType=VARCHAR}"%"
+    <if test="company.post != '' and company.post!=null">
+      and post like "%"#{company.post,jdbcType=VARCHAR}"%"
     </if>
-    <if test="qualiy != '' and qualiy!=null">
-      and qualiy like "%"#{qualiy,jdbcType=VARCHAR}"%"
+    <if test="company.qualiy != '' and company.qualiy!=null">
+      and qualiy like "%"#{company.qualiy,jdbcType=VARCHAR}"%"
+    </if>
+    <if test="pageHelper!=null">
+      limit ${pageHelper.start},${pageHelper.page*pageHelper.limit}
     </if>
   </select>
 
